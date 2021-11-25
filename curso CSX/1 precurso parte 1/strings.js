@@ -17,7 +17,7 @@ console.log(count);
 console.log(upper);
 console.log(lower);
 
-
+// -----------------------------------------------------------------------------------------------------------------------------
 
 /* 1. Declare a variable firstLetter and assign it a value of the first letter of songTitle using bracket notation.
 

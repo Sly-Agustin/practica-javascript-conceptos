@@ -15,7 +15,7 @@ let age = 26;
 const loveJavaScript = true;
 let listOfComplaints = null;
 
-
+// -----------------------------------------------------------------------------------------------------------------------------
 
 /* CHALLENGE: STRINGS
 1. On line 7, declare a variable mySingleString with single quotes ('), and set it's value to any string you like.
@@ -44,7 +44,7 @@ console.log(mySingleString);
 console.log(myDoubleString);
 console.log(myBackString);
 
-
+// -----------------------------------------------------------------------------------------------------------------------------
 
 /*CHALLENGE: STRINGS - ESCAPE SEQUENCES */
 /*
@@ -65,6 +65,8 @@ console.log(heSaid);
 
 const sheSaid = 'My name ain\'t Foo!';
 console.log(sheSaid);
+
+// -----------------------------------------------------------------------------------------------------------------------------
 
 /* CHALLENGE: STRING CONCATENATION*/
 /* Use string concatenation to join the three provided strings (first, second, and third) and assign 

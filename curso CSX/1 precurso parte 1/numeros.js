@@ -15,7 +15,7 @@ console.log(birthYear);
 console.log(age);
 console.log(in10Yrs);
 
-
+// -----------------------------------------------------------------------------------------------------------------------------
 
 // MULTIPLICACIÓN Y DIVISIÓN
 /* Perform the following multiplication/division operations in the code editor:
@@ -36,7 +36,7 @@ console.log(twentyTimesFour);
 console.log(nineOverThree);
 console.log(twoHundredTimesThree);
 
-
+// -----------------------------------------------------------------------------------------------------------------------------
 
 // EXPONENTE Y MÓDULOS
 /* 1. Declare a constant fiveSquared and assign it the value of 5 to the power of 2 using the exponentiation operator.
@@ -63,7 +63,7 @@ console.log(sevenToTheSixth);
 console.log(eightyThreeModSix);
 console.log(sixtyModNine);
 
-
+// -----------------------------------------------------------------------------------------------------------------------------
 
 // INCREMENTOS Y DECREMENTOS
 /* 1. Using the incrementor operator, increase the value of num1 by 1.
@@ -77,7 +77,7 @@ let num2 = 44;
 num1++;
 num2--;
 
-
+// -----------------------------------------------------------------------------------------------------------------------------
 
 // OPERADORES DE ASIGNACIÓN
 /* 1. Using the appropriate assignment operator, reassign the value of num1 to the current value plus 17.
