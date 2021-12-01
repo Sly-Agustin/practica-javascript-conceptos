@@ -38,10 +38,10 @@ function once(callback){
         if (value==undefined){
             value=callback(arguments[0]);
             return value;
-      }
+        }
         else {
             return value;
-      }
+        }
   }
 }
 
@@ -52,6 +52,30 @@ const addByTwoOnce = once(function(num) {
 console.log(addByTwoOnce(5));  //should log 7
 console.log(addByTwoOnce(10));  //should log 7
 console.log(addByTwoOnce(9001));  //should log 7
+
+// -----------------------------------------------------------------------------------------------------------------------------
+
+/* Write a function after that takes the number of times the callback needs to be called before being executed as the first parameter 
+and the callback as the second parameter. */
+
+function after(num, callback) {
+    let times = num-1;
+    return function(){
+        if(times>0){
+            times--;
+        }
+        else {
+            return callback(arguments[0]);
+        }
+    }
+}
+
+const called = function(string) { return('hello ' + string); };
+const afterCalled = after(3, called);
+
+console.log(afterCalled('world')); // -> undefined is printed
+console.log(afterCalled('world')); // -> undefined is printed
+console.log(afterCalled('world')); // -> 'hello world' is printed
 
 // -----------------------------------------------------------------------------------------------------------------------------
 
