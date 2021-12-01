@@ -145,3 +145,100 @@ console.log(multiMap(items, functions)); /* should log:
 
 // -----------------------------------------------------------------------------------------------------------------------------
 
+/* Create a function prioritize that accepts an array and a callback. The callback will return either true or false. prioritize 
+will iterate through the array and perform the callback on each element, and return a new array, where all the elements that 
+yielded a return value of true come first in the array, and the rest of the elements come second. */
+
+function prioritize(arr, callback) {
+	const arrPriority=[];
+	const arrNotPriority=[];
+	for(let i=0; i<arr.length; i++) {
+	  	if(callback(arr[i])) {
+		  	arrPriority.push(arr[i]);
+		}
+	  	else {
+			arrNotPriority.push(arr[i]);
+		}
+	}
+ 	return arrPriority.concat(arrNotPriority);
+}
+
+function startsWithS(str) { return str[0].toLowerCase() === 's'; }
+const tvShows = ['curb', 'rickandmorty', 'seinfeld', 'sunny', 'friends']
+console.log(prioritize(tvShows, startsWithS)); // should log: ['seinfeld', 'sunny', 'curb', 'rickandmorty', 'friends']
+
+// -----------------------------------------------------------------------------------------------------------------------------
+
+/* Create a function countBy that accepts an array and a callback, and returns an object. countBy will iterate through the array 
+and perform the callback on each element. Each return value from the callback will be saved as a key on the object. The value 
+associated with each key will be the number of times that particular return value was returned.*/
+
+function countBy(arr, callback) {
+	const obj = {}
+	for (let i = 0; i<arr.length; i++) {
+	  	let key = callback(arr[i]);
+	  	if(obj[key]==undefined) {
+		  	obj[key]=1
+		}
+	  	else{
+		  	obj[key]++;
+		}
+	}
+  	return obj;
+}
+
+function evenOdd(n) {
+	if (n % 2 === 0) return 'even';
+	else return 'odd';
+}
+const nums = [1, 2, 3, 4, 5];
+console.log(countBy(nums, evenOdd)); // should log: { odd: 3, even: 2 }
+
+// -----------------------------------------------------------------------------------------------------------------------------
+
+/* Create a function groupBy that accepts an array and a callback, and returns an object. groupBy will iterate through the array 
+and perform the callback on each element. Each return value from the callback will be saved as a key on the object. The value 
+associated with each key will be an array consisting of all the elements that resulted in that return value when passed into the 
+callback.*/
+
+function groupBy(arr, callback){
+	const obj = {}
+ 	for(let i=0; i<arr.length; i++) {
+	  	let value = arr[i];
+	  	let key = callback(value);
+	  	if (obj[key]==undefined) {
+		  	obj[key]=[];
+		  	obj[key].push(value);
+		}
+	  	else {
+		  	obj[key].push(value);
+		}
+	}
+  	return obj;
+}
+
+const decimals = [1.3, 2.1, 2.4];
+const floored = function(num) { return Math.floor(num); };
+console.log(groupBy(decimals, floored)); // should log: { 1: [1.3], 2: [2.1, 2.4] }
+
+// -----------------------------------------------------------------------------------------------------------------------------
+
+/* Create a function goodKeys that accepts an object and a callback. The callback will return either true or false. goodKeys will 
+iterate through the object and perform the callback on each value. goodKeys will then return an array consisting only the keys 
+whose associated values yielded a true return value from the callback. */
+
+function goodKeys(obj, callback) {
+	let arrRet = [];
+  	for (var key in obj) {
+	  	if(callback(obj[key])) {
+		  	arrRet.push(key);
+		}
+	}
+  	return arrRet;
+}
+
+const sunny = { mac: 'priest', dennis: 'calculator', charlie: 'birdlaw', dee: 'bird', frank: 'warthog' };
+function startsWithBird(str) { return str.slice(0, 4).toLowerCase() === 'bird'; };
+console.log(goodKeys(sunny, startsWithBird)); // should log: ['charlie', 'dee']
+
+// -----------------------------------------------------------------------------------------------------------------------------
