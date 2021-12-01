@@ -98,5 +98,50 @@ const arr2 = ['HI', 'Howdy', 'BYE', 'later', 'HELLO'];
 function uppercaser(str) { return str.toUpperCase(); }
 console.log(objOfMatches(arr1, arr2, uppercaser)); // should log: { hi: 'HI', bye: 'BYE', hello: 'HELLO' }
 
-//-----------------------------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------------------------
+
+/* arrToObj should return an object that has elements from the passed-in array as keys, and the outputs from the callback 
+(when those elements are passed in) as the corresponding values.*/
+
+function arrToObj(array, callback) {
+	const arrRetorno={}
+  	for(let i=0; i<array.length; i++) {
+		let nuevo=callback(array[i]);
+		arrRetorno[array[i]]=nuevo;
+	}
+  	return arrRetorno;
+}
+
+const arrOfStrings = ['beer', 'glue'];
+const capitalize = str => str.toUpperCase();
+console.log(arrToObj(arrOfStrings, capitalize)); // should log: { beer: 'BEER', glue: 'GLUE' }
+
+// -----------------------------------------------------------------------------------------------------------------------------
+
+/* Construct a function multiMap that will accept two arrays - an array of values and an array of callbacks. multiMap will return 
+an object whose keys match the elements in the array of values. The corresponding values that are assigned to the keys will be 
+arrays consisting of outputs from the array of callbacks, where the input to each callback is the key.*/
+
+function multiMap(arrElems, arrFunct){
+	const objRet={}
+	for(let i=0; i<arrElems.length; i++) {
+		let elemActual=arrElems[i];
+		let arrResultados=[]
+		for(let j=0; j<arrFunct.length; j++) {
+			arrResultados.push(arrFunct[j](elemActual));
+		} 
+		objRet[elemActual]=arrResultados;
+	}
+	return objRet;
+}
+
+function uppercaser(str) { return str.toUpperCase(); }
+function capitalize(str) { return str[0].toUpperCase() + str.slice(1).toLowerCase(); }
+function repeater(str) { return str + str; }
+const items = ['catfood', 'glue', 'beer'];
+const functions = [uppercaser, capitalize, repeater];
+console.log(multiMap(items, functions)); /* should log: 
+{ catfood: ['CATFOOD', 'Catfood', 'catfoodcatfood'], glue: ['GLUE', 'Glue', 'glueglue'], beer: ['BEER', 'Beer', 'beerbeer'] } */
+
+// -----------------------------------------------------------------------------------------------------------------------------
 
