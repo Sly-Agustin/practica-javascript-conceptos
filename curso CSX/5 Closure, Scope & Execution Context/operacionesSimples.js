@@ -79,3 +79,46 @@ console.log(afterCalled('world')); // -> 'hello world' is printed
 
 // -----------------------------------------------------------------------------------------------------------------------------
 
+/* Write a function delay that accepts two arguments, a callback and the wait time in milliseconds. Delay should return a 
+function that, when invoked waits for the specified amount of time before executing. HINT - research setTimeout(); */
+
+function delay(callback, time){
+    return function(){
+        setTimeout(function() {
+            return callback(time);
+      }, time);
+  }
+}
+
+let count = 0;
+const delayedFunc = delay(() => count++, 1000);
+delayedFunc();
+console.log(count); 												 // should print '0'
+setTimeout(() => console.log(count), 1000); // should print '1' after 1 second
+
+// -----------------------------------------------------------------------------------------------------------------------------
+
+/* Create a function saveOutput that accepts a function (that will accept one argument), and a string (that will act as a password). 
+saveOutput will then return a function that behaves exactly like the passed-in function, except for when the password string is 
+passed in as an argument. When this happens, the returned function will return an object with all previously passed-in arguments 
+as keys, and the corresponding outputs as values*/
+
+function saveOutput(fun, cadena){
+    let obj = {}
+    return function() {
+        if(typeof(arguments[0])=="number"){
+            obj[arguments[0]]=fun(arguments[0]);
+            return fun(arguments[0]);
+        }
+        else {
+            console.log(obj[cadena]);
+            return obj;
+        }
+    }
+}
+
+const multiplyBy2 = function(num) { return num * 2; };
+const multBy2AndLog = saveOutput(multiplyBy2, 'boo');
+console.log(multBy2AndLog(2)); // should log: 4
+console.log(multBy2AndLog(9)); // should log: 18
+console.log(multBy2AndLog('boo')); // should log: { 2: 4, 9: 18 }
